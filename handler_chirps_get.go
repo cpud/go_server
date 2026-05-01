@@ -6,7 +6,7 @@ import (
 	"github.com/google/uuid"
 )
 
-func (cfg *apiConfig) handlerChirpsRetrieve(w http.ResponseWriter, r *http.Request) {
+func (cfg *apiConfig) handlerChirpsGet(w http.ResponseWriter, r *http.Request) {
 	dbChirps, err := cfg.db.GetChirps(r.Context())
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, "Couldn't retrieve chirps", err)
@@ -19,7 +19,7 @@ func (cfg *apiConfig) handlerChirpsRetrieve(w http.ResponseWriter, r *http.Reque
 			ID:        dbChirp.ID,
 			CreatedAt: dbChirp.CreatedAt,
 			UpdatedAt: dbChirp.UpdatedAt,
-			User_Id:   dbChirp.UserID,
+			UserID:    dbChirp.UserID,
 			Body:      dbChirp.Body,
 		})
 	}
@@ -45,7 +45,7 @@ func (cfg *apiConfig) handlerChirpsById(w http.ResponseWriter, r *http.Request) 
 		ID:        dbChirp.ID,
 		CreatedAt: dbChirp.CreatedAt,
 		UpdatedAt: dbChirp.UpdatedAt,
-		User_Id:   dbChirp.UserID,
+		UserID:    dbChirp.UserID,
 		Body:      dbChirp.Body,
 	})
 }
